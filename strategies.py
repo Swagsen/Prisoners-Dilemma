@@ -1,4 +1,3 @@
-import numpy
 import random
 
 # '0' is cooperate, '1' is defect
@@ -9,8 +8,6 @@ class Strategy:
     def __init__(self, size, strategy):
         self.size = size
         self.strategy = strategy
-        self.fitness = numpy.zeros(self.size)
-        self.fitness_sum = 0
         self.history = ''
         self.opponentHistory = ''
 
@@ -30,6 +27,7 @@ class Strategy:
             return self.Forgiving()
         elif self.strategy == "Pavlov":
             return self.Pavlov()
+        return ''
         
     #always defect
     def AlwaysDefect(self):
@@ -50,7 +48,7 @@ class Strategy:
 
     #action is random 
     def Random(self):
-        return str(Random.randint(0,1))
+        return str(random.randint(0,1))
 
     #cooperate as long as the opponent does so
     def Nice(self):
@@ -76,15 +74,13 @@ class Strategy:
             return '0'
         else:
             return '1'
-            
-    #clean fitness(?)
-    def CleanFitness(self):
-        self.history = []
-        self.opponentHistory = []
-        self.fitness = numpy.zeros(self.size)
-        self.fitness_sum = 0
 
-strategy = Strategy(2, "Pavlov")
-print(strategy.strategy + ":  " + strategy.Selection())
-print(strategy.strategy + ":  " + strategy.Selection())
-print(strategy.strategy + ":  " + strategy.Selection())
+    def AddToHistory(self, history):
+        self.opponentHistory += history[0]
+        self.history += history[-1]
+            
+    #clean history
+    def CleanHistory(self):
+        self.history = ''
+        self.opponentHistory = ''
+
