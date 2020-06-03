@@ -17,8 +17,8 @@ def OneStrategy(strategy):
         for x in range(numberOfGeneration):
             population.Generation(strategy)
 
-        print('best chromosome: ', population.bestChromosome)
-        print('strategy: ', strategy, ' maximum fitness: ', population.bestFitness,'/', population.opponentFitness)
+        #print('best chromosome: ', population.bestChromosome)
+        print('strategy: ', strategy, ' Years in prison: ', population.bestFitness,' opponent:', population.opponentFitness)
 
 def AllStrategies():
     for strategy in strategyList:
